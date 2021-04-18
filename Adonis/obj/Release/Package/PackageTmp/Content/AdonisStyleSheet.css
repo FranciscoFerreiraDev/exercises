@@ -1,0 +1,174 @@
+﻿body {
+    padding-top:0%;
+}
+
+th {
+    background-color: #000000 !important;
+    color: white !important;
+}
+
+textarea {
+    width:100% !important;
+    height:200px !important;
+    column-span: all;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.body-content {
+    padding:0%;
+}
+
+.container {
+    margin: 0;
+}
+
+.CandidateFormat table tr{
+    width: 100% !important;
+}
+
+.CandidateFormat td{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word; /* IE 5.5-7 */
+    /*white-space: -moz-pre-wrap;*/ /* Firefox 1.0-2.0 */
+    white-space: pre-wrap; /* current browsers */
+}
+
+.menuADN {
+    background-color: black;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0% !important;
+    padding-top: 0% !important;
+}
+
+.menuADN a {
+    color:white;
+    display:inline;
+    text-decoration:none;
+}
+
+.menuADN ul {
+    display: inline;
+}
+
+.menuADN * {
+        color: white;
+        display: inline;
+}
+
+.container table, th, tr, td {
+    border-color: black;
+    white-space: nowrap;
+    text-align: center;
+    /*font-weight: bold;*/
+}
+
+.teste{
+    color:black !important;
+}
+
+#container {
+    display: inline-flex;
+}
+
+#List {
+    padding:0%;
+}
+
+#List > *{
+    width: 100% !important;
+    height: 100%;
+}
+
+#List > table th {
+    background-color: #000000 !important;
+    color: white !important;
+}
+
+#CandidateInfo > table th {
+    background-color: #000000 !important;
+    color: white !important;
+}
+
+#ExpList > table th {
+    background-color: #000000 !important;
+    color: white !important;
+}
+
+#Forms {
+    width: 50%;
+    /*margin-left: 50%;*/
+    display: inline-flex;
+}
+
+#AdvStatus td {
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+#NotesContainer{
+    width: 100%;
+}
+
+#NotesContainer td {
+    text-align: initial !important;
+}
+
+#NotesContainer > table{
+    width: 100%;
+}
+
+#NotesContainer label{
+    text-align: initial;
+}
+
+#NotesContainer button{
+    text-align: center;
+}
+
+/*///////////////////dropdown menu//////////////////////*/
+
+.dropbtn {
+    background-color: #000;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}

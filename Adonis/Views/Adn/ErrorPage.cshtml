@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "ErrorPage";
+}
+
+<h2 style="color:red;">A wild Error has appeared!</h2><br />
+<img src="https://ciberduvidas.iscte-iul.pt/assets/static/img/2016/11/21/1479704586564_error.png" alt="!ERROR!"/><br />
+<p>The solution has encountered an error during it's execution.</p>
+<p>The data you have sent has been registered in the loggs, but not commited to the working area of the solution.</p>
+<p>The people who are working on this solution have access to the loggs and will be acting on solving the issue.</p>
+<p>If you wish to warn them of this problem you have enccountered, then please send an email 
+    to <a href='mailto:ricolavo+vaeyjnped0m9xi6g5eso@boards.trello.com?Subject=Defect.' target='_top'> Reloading Tech Trello Board</a> 
+with the subject as "Error Found", body containing the page title, what you did before the error appearing and the code of the error in question.</p>
+<p>The error code is displayed at the end of this page. Hope this does not </p>
+<label>ERROR CODE:</label><label style="color:red;">@ViewBag.ErrorCode</label>

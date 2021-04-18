@@ -1,0 +1,46 @@
+﻿@model Adonis.Models.Customers
+
+@{
+    ViewBag.Title = "Customers";
+}
+
+<h2>Customers</h2>
+
+<div id="container" name="container">
+    <div id="Forms" name="Forms">
+        <div id="FormCreate" name="FormCreate">
+            <form method="post" runat="server" action="CreateCustomer">
+                Entity Name:<input type="text" id="ClientName" name="ClientName"/><br />
+                NIF:<input type="text" íd="NIF" name="NIF"/><br />
+                Legal Representative<br /> Name:<input type="text" id="RepresentativeName" name="RepresentativeName"/><br />
+                Adress:<input type="text" name="Adress" id="Adress"/><br />
+                Email:<input type="email" id="Email" name="Email"/><br />
+                Financial/Procurement <br />Department Email:<input type="email" id="FinancialDepartmentEmail" name="FinancialDepartmentEmail"/><br />
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+        <div id="FormEdit" name="FormEdit">
+            <form method="post" runat="server" action="EditCustomer">
+                Entity Name:<input type="text" id="oldClientName" name="oldClientName" /><br />
+                NIF:<input type="text" id="oldNIf" name="oldNIF" /><br />
+                Legal Representative<br /> Name:<input type="text" id="oldLegalRepresentative" name="oldLegalRepresentative" /><br />
+                Adress:<input type="text" id="oldAdress" name="oldAdress" /><br />
+                Email:<input type="email" id="oldEmail" name="oldEmail" /><br />
+                Financial/Procurement <br />Department Email:<input type="email" id="oldFinancialDepartmentEmail" name="oldFinancialDepartmentEmail" /><br />
+                Active:<select id="oldActive" name="oldActive">
+                    <option value="1">Active</option>
+                    <option value="0">Not Active</option>
+                </select>
+                <input type="text" id="oldId" name="oldId" hidden />
+                <input type="submit" value="Edit" />
+            </form>
+        </div>
+    </div>
+    <div id="List" name="List"></div>
+</div>
+<script>
+    $(document).ready(function () {
+            showCustomers();
+        }
+    );
+</script>

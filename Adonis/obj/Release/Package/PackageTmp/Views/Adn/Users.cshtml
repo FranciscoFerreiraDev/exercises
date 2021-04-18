@@ -1,0 +1,64 @@
+﻿@model Adonis.Models.User
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<div id="container">
+    <div id="List">
+    </div>
+    <div id="Forms">
+        <div id="FormCreate">
+            <label>CREATE USER</label>
+            @*<form method="post" action="CreateUserAction">*@
+                User Name:<input type="text" id="Name" name="Name" /><br />
+                Password:<input type="text" id="Password" name="Password" /><br />
+                User Role:<select id="IdCRole" name="IdCRole">
+                @{ 
+                    foreach (var item in ViewBag.UserRoles)
+                    {
+                        <option value="@item.IdUserRole">@item.Description</option>
+                    }
+                }
+                </select><br />
+                @*<input type="submit" value="Create" />*@
+            <button onclick="CreateUser()">Create</button>
+            @*</form>*@
+        </div>
+        <br />
+        <label>EDIT USER</label>
+        <div id="FormEdit">
+            @*<form method="post" action="EditUserAction">*@
+                <input type="hidden" id="IdUser" name="IdUser" /><br />
+                Name:<input type="text" id="editName" name="editName" /><br />
+                Password:<input type="text" id="editPass" name="editPass" /><br />
+                User Role:<select id="EditIdCRole" name="EditIdCRole">
+                    @{
+                        foreach (var item in ViewBag.UserRoles)
+                        {
+                            <option value="@item.IdUserRole">@item.Description</option>
+                        }
+                    }
+                </select>
+                Status:
+                <select id="Activated" name="Activated">
+                    <option value="1">Activated</option>
+                    <option value="0">DeActivated</option>
+                </select>
+                <br />
+            <button onclick="EditUser()">Update</button>
+                @*<input type="submit" value="Update" />*@
+            @*</form>*@
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $(document).ready(function () {
+        showUserList();
+    }
+    );
+</script>

@@ -1,0 +1,49 @@
+﻿@model Adonis.Models.UserRoles
+
+@{
+    ViewBag.Title = "UserRoles";
+}
+
+<h2>UserRoles</h2>
+
+<div id="container">
+    <div id="List" name="List">
+
+    </div>
+    <div id="Forms" name="Forms">
+        <div id="FormCreate">
+            <form method="post" action="CreateUserRoleAction">
+                Description:<input type="text" id="newRole" name="newRole" />
+                WP:<select id="CreateWP" name="CreateWP">
+                    <option value="candidates">Candidates</option>
+                    <option value="leads">Leads</option>
+                    <option value="configuations">Configuations</option>
+                    <option value="all">ALL</option>
+                </select>
+                Access Level:<select id="CreateAccessLevel" name="CreateAccessLevel">
+                    <option value="C">Create</option>
+                    <option value="Ra">Read all</option>
+                    <option value="Ua">Update all</option>
+                    <option value="Ro">Read owned</option>
+                    <option value="Uo">Update owned</option>
+                </select>
+                <input type="submit" value="Create" />
+            </form>
+        </div><br />
+        <div id="FormEdit">
+            <form method="post" action="EditUserRoleAction">
+                Description:<input type="text" id="newRole" name="newRole" />
+                WP:<select></select>
+                Access Level:<select></select>
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        showUserRoles();
+    }
+    );
+</script>

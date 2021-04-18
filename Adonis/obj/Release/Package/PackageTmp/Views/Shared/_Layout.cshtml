@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/AdonisStyleSheet.css" rel="stylesheet" />
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/AdonisJS.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div @*class="container"*@ class="menuADN">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            @Html.ActionLink("Adonis", "Index", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="dropdown">
+                <button onclick="ShowMenus(1)" class="dropbtn">
+                    Candidate Management
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div id="CandidatesMenu" class="dropdown-content">
+
+                    @Html.ActionLink("Candidates", "Candidates", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Roles", "Roles", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Skills", "Skills", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Candidacies", "Candidacies", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Candidate Status", "CandidateStatus", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Availability", "Availability", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Location", "Location", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button onclick="ShowMenus(2)" class="dropbtn">
+                    Leads Management
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div id="LeadsMenu" class="dropdown-content">
+                    @Html.ActionLink("Leads", "Leads", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Lead Status", "LeadStatus", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Customers", "Customers", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Nationalities", "Nationalities", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+            </div>
+
+            @Html.ActionLink("Users", "Users", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("UserRoles", "UserRoles", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Configurations", "Configurations", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+            @{
+                if (Session["User"] != null && Session["User"].ToString() != "Guest".ToString())
+                {
+                    <label>Hello @Session["User"]!</label>
+                }
+                else
+                {
+                    @Html.ActionLink("Log In", "LogIn", "Adn", new { area = "" }, new { @class = "navbar-brand" })
+                }
+            }
+        </div>
+    </div>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - @ViewBag.AppVersion</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

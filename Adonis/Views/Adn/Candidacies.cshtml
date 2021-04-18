@@ -1,0 +1,39 @@
+﻿@model Adonis.Models.Candidacy
+
+@{
+    ViewBag.Title = "Candidacies";
+}
+
+<h2>Candidacies</h2>
+
+<div id="container">
+    <div id="List">
+
+    </div>
+    <div id="Forms">
+        <label>CREATE CANDIDACY</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateCandidacy">
+                Name:<input type="text" id="newCandidacy" name="newCandidacy" />
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+        <label>EDIT CANDIDACY</label>
+        <div id="FormEdit">
+            <form method="post" action="EditCandidacy">
+                Name:<input type="text" id="newName" name="newName" />
+                Status:
+                <select id="Activated" name="Activated">
+                    <option value="1">Activated</option>
+                    <option value="0">DeActivated</option>
+                </select>
+                <br />
+                <input type="submit" value="Create" />
+                <input type="hidden" id="OldId" name="OldId" />
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    showCandidaciesList();
+</script>

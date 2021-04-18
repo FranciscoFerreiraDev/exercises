@@ -1,0 +1,44 @@
+﻿@model Adonis.Models.Location
+
+@{
+    ViewBag.Title = "Location";
+}
+
+<h2>Location</h2>
+
+<div id="container">
+    <div id="List">
+
+    </div>
+    <div id="Forms">
+
+        <label>CREATE LOCATION</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateLocationAction">
+                Description:<input type="text" id="description" name="description" /><br />
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+
+        <br />
+
+        <label>EDIT LOCATION</label>
+        <div id="FormEdit">
+            <form method="post" action="EditLocationAction">
+                Name:<input type="text" id="newName" name="newName" />
+                Status:
+                <select id="Activated" name="Activated">
+                    <option value="1">Activated</option>
+                    <option value="0">DeActivated</option>
+                </select>
+                <br />
+                <input type="submit" value="Update" />
+                <input type="hidden" id="OldId" name="OldId" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    showLocationList();
+</script>

@@ -1,0 +1,49 @@
+﻿@model Adonis.Models.Leads
+
+@{
+    ViewBag.Title = "LeadStatus";
+}
+
+<h2>LeadStatus</h2>
+
+<div id="container" name="container">
+    <div id="Forms" name="Forms">
+        <label>CREATE STATUS</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateLeadStatusAction">
+                Description:<input type="text" id="description" name="description" /><br />
+                Color (in: RED-GREEN-BLUE):<br />
+                R<input tipe="text" id="R" name="R" /><br />
+                G<input tipe="text" id="G" name="G" /><br />
+                B<input tipe="text" id="B" name="B" /><br />
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+
+        <br />
+
+        <label>EDIT STATUS</label>
+        <div id="FormEdit">
+            <form method="post" action="EditLeadStatusAction">
+                <input type="hidden" id="IdStatus" name="IdStatus" />
+                Description:<input type="text" id="eDescription" name="eDescription" /><br />
+                Color (in: RED-GREEN-BLUE):<br />
+                R<input tipe="text" id="eR" name="eR" /><br />
+                G<input tipe="text" id="eG" name="eG" /><br />
+                B<input tipe="text" id="eB" name="eB" /><br />
+                Active:<select id="Active" name="Active">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                <input type="submit" value="Edit" />
+            </form>
+        </div>
+    </div>
+    <div id="List" name="List"></div>
+</div>
+<script>
+    $(document).ready(function () {
+            showLeadStatus();
+        }
+    );
+</script>

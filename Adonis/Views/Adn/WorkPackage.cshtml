@@ -1,0 +1,48 @@
+﻿@model Adonis.Models.WorkPackage
+
+@{
+    ViewBag.Title = "WorkPackage";
+}
+
+<h2>WorkPackage</h2>
+
+<div id="container" name="container">
+    <div id="List" name="List">
+
+    </div>
+    <div id="Forms" name="Forms">
+
+        <label>CREATE Work Package</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateWorkPackage">
+                Code:<input type="text" id="newWP" name="newWP" />
+                Description:<input type="text" id="newDescription" name="newDescription" />
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+
+        <br />
+
+        <label>EDIT Work Package</label>
+        <div id="FormEdit">
+            <form method="post" action="EditRoleAction">
+                Code:<input type="text" id="editWP" name="editWP" />
+                Description:<input type="text" id="newDescription" name="newDescription" />
+                Status:
+                <select id="Activated" name="Activated">
+                    <option value="1">Activated</option>
+                    <option value="0">DeActivated</option>
+                </select>
+                <br />
+                <input type="submit" value="Update" />
+                <input type="hidden" id="OldId" name="OldId" />
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+        $(document).ready(function () {
+        showWP();
+    }
+    );
+</script>

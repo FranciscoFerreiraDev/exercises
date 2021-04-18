@@ -1,0 +1,555 @@
+﻿@model Adonis.Models.CandidateFullInfo
+
+@{
+    ViewBag.Title = "Candidates";
+}
+
+<h2>Candidates</h2>
+
+<div id="FormsCandidate">
+    <div>
+        <button onclick="ShowHideEditFormsCandidates(1)"><i class="fas fa-user-plus"> </i> Create Candidate</button>
+        <button onclick="ShowHideEditFormsCandidates(0)"><i class="fa fa-close"></i></button>
+    </div>
+    <label id="IdCandidate" name="IdCandidate" hidden></label>
+    <label id="CandidateName" name="CandidateName" hidden></label>
+    <div id="CreateCandidateMainExp" style="border:double black; border-width:2px; background-color:#D1E5B5; background-color:#172949; color:white;">
+        @*<form method="post" action="CreateCandidateFullCVAction">*@
+            <label>Create Candidate</label>
+            <table border="1">
+                <tr>
+                    <td>
+                        Name:<br />
+                        <input type="text" id="CreateName" name="CreateName" placeholder="Name" required />
+                    </td>
+                    <td>
+                        Nationality:<br />
+                        <select id="CreateNationality" name="CreateNationality">
+                            @foreach (var item in ViewBag.Nationalities)
+                            {
+                                if (item.Active == 1 && item.forCandidates == 1)
+                                {
+                                    <option name="@item.IdNationality" value="@item.IdNationality">@item.NationalityDescription</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>Birthday<br /><input type="date" id="CreateBirthDate" name="CreateBirthDate" required /></td>
+                    <td>
+                        Role:<br />
+                        <select id="CreateRole" name="CreateRole" required>
+                            {
+                            @foreach (var item in ViewBag.Roles)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdRole" value="@item.IdRole">@item.NameRole</option>
+                                }
+                            }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Skill:<br />
+                        <select id="CreateSkill" name="CreateSkill" required>
+                            {
+                            @foreach (var item in ViewBag.Skills)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdSkill" value="@item.IdSkill">@item.Name</option>
+                                }
+                            }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Start:<br />
+                        <input type="date" id="Init" name="Init" required />
+                    </td>
+                    <td>
+                        Finish:<br />
+                        <input type="date" id="End" name="End" required />
+                    </td>
+                    <td>
+                        Skill Grade:<br />
+                        <select id="Grade" name="Grade" required>
+                            {
+                            @foreach (var item in ViewBag.Grades)
+                            {
+                                <option name="@item.IdGrade" value="@item.IdGrade">@item.Grade</option>
+                            }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Local:<br />
+                        @*<input type="text" id="CurrentPlace" name="CurrentPlace" placeholder="Cidade/País" required />*@
+                        <select id="CurrentPlace" name="CurrentPlace">
+                            @foreach (var item in ViewBag.Locations)
+                            {
+                                if (item.Activated == 1)
+                                {
+                                    <option name="@item.IdLocation" value="@item.IdLocation">@item.Description</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Avaiability:<br />
+                        <select id="avaiability" name="avaiability" required>
+                            {
+                            @foreach (var item in ViewBag.Availability)
+                            {
+                                if (item.Activated == 1)
+                                {
+                                    <option name="@item.IdAvailability" value="@item.IdAvailability">@item.Description</option>
+                                }
+                            }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Gross:<br />
+                        <input type="text" id="Gross" name="Gross" />
+                    </td>
+                    <td>
+                        NET:<br />
+                        <input type="text" id="NET" name="NET" placeholder="€€€€" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Rate (€):<br />
+                        <input type="text" id="DailyGains" name="DailyGains" placeholder="€€€€" />
+                    </td>
+                    <td>
+                        Salary Notes:
+                        <br />
+                        <input type="text" id="RemunerationNotes" name="RemunerationNotes" />
+                    </td>
+                    <td>
+                        Status:<br />
+                        <select id="status" name="status">
+                            @foreach (var item in ViewBag.CandidateStatus)
+                            {
+                                if (item.Activated == 1)
+                                {
+                                    <option name="@item.Description" value="@item.IdStatus">@item.Description</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Interview <br />Date:<br />
+                        <input type="text" id="interview" name="interview" placeholder="yyyy-mm-dd" />
+                    </td>
+                    <td>
+                        Source:<br />
+                        <select id="Cand" name="Cand" required>
+                            {
+                            @foreach (var item in ViewBag.Candidacies)
+                            {
+                                if (item.Activated == 1)
+                                {
+                                    <option name="@item.IdCandidacy" value="@item.IdCandidacy">@item.Description</option>
+                                }
+                            }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Candidate Evaluation:<br />
+                        <select id="Eval" name="Eval">
+                            @foreach (var item in ViewBag.Evaluations)
+                            {
+                                <option name="@item.IdEval" value="@item.IdEval">@item.Eval</option>
+                            }
+                        </select>
+                    </td>
+                    <td>Candidate <br /> Code<br /><input type="text" name="CandidateCode" id="CandidateCode" /></td>
+                    <td>
+                        Main Experience:<br /> <select id="mainxp" name="mainxp">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </td></tr><tr>
+                    <td>Contact<br /> Number<br /><input type="text" id="CreateContactNumber" name="CreateContactNumber" pattern="[0-9]{9}"
+                                                  maxlength="9" placeholder="218888888" title="Please enter numbers only"/></td>
+                    <td>Email<br /><input type="email" id="CreateEmail" name="CreateEmail" required/></td>
+                </tr>
+
+            </table>
+            <table width="1200px">
+                <tr>
+                    <td>
+                        Description:<br />
+                        <textarea id="Desc" name="Desc" placeholder="Description" style="width:100% !important; height:500px;"></textarea><br />
+                    </td>
+                </tr>
+            </table>
+
+            @*<input type="submit" value="Create" />*@
+        <button onclick="CreateCandidate()">Create</button>
+        @*</form>*@
+    </div>
+    <div id="CreateExp" name="CreateExp">
+        CreateExp
+        <table border="1">
+            <tr>
+                <td>
+                    <input type="hidden" id="IdCandidate" name="IdCandidate" />
+                    Role:<br /><select id="UpdateiRole" name="UpdateiRole">
+                        @foreach (var item in ViewBag.Roles)
+                        {
+                            if (item.Active == 1)
+                            {
+                                <option name="@item.IdRole" value="@item.IdRole">@item.NameRole</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td>
+                    Skill:<br /><select id="UpdateiSkill" name="UpdateiSkill">
+                        @foreach (var item in ViewBag.Skills)
+                        {
+                            if (item.Active == 1)
+                            {
+                                <option name="@item.IdSkill" value="@item.IdSkill">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td>
+                    Start Date:<br /><input type="text" id="UpdateiInit" name="UpdateiInit" placeholder="yyyy-mm-dd" />
+                </td>
+                <td>
+                    Finish Date:<br /><input type="text" id="UpdateiEnd" name="UpdateiEnd" placeholder="yyyy-mm-dd" />
+                </td>
+                <td>
+                    Skill Evaluation:<br /><select id="UpdateiGrade" name="UpdateiGrade">
+                        @foreach (var item in ViewBag.Grades)
+                        {
+                            <option id="@item.IdGrade" value="@item.IdGrade">@item.Grade</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="EditCandidate" name="EditCandidate" style="border:double; border-width:2px; background-color:#b4c7e7;">
+        @*<form method="post" action="EDITCandidate" style="border:double; border-width:2px; background-color:#b4c7e7;">*@
+            <label>Edit Candidate</label>
+            <table border="1">
+                <tr>
+                    <td>
+                        Name:<br /><input type="text" id="UpdateName" name="UpdateName" placeholder="Name" required />
+                    </td>
+                    <td>
+                        Nationality:<br />
+                        <select id="EditNationality" name="EditNationality">
+                            @foreach (var item in ViewBag.Nationalities)
+                            {
+                                if (item.Active == 1 && item.forCandidates == 1)
+                                {
+                                    <option name="@item.IdNationality" value="@item.IdNationality">@item.NationalityDescription</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>Birthday<br /><input type="date" id="EditBirthDate" name="EditBirthDate" required /></td>
+                    <td>
+                        Current location:<br />
+                        <select id="UpdateCurrentPlace" name="UpdateCurrentPlace">
+                            @foreach (var item in ViewBag.Locations)
+                            {
+                                <option name="@item.IdLocation" value="@item.IdLocation">@item.Description</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Availability:<br />
+                        <select id="UpdateAvaiability" name="UpdateAvaiability" required>
+                            {
+                            @foreach (var item in ViewBag.Availability)
+                            {
+                                if (item.Activated == 1)
+                                {
+                                    <option name="@item.IdAvailability" value="@item.IdAvailability">@item.Description</option>
+                                }
+                            }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Gross:<br /><input type="text" id="UpdateGross" name="UpdateGross" placeholder="€€€€" />
+                    </td>
+                    <td>
+                        NET:<br />
+                        <input type="text" id="UpdateNET" name="UpdateNET" placeholder="€€€€" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Rate:<br /><input type="text" id="UpdateDailyGains" name="UpdateDailyGains" placeholder="€€€€" />
+                    </td>
+                    <td>
+                        Salary Notes:<br /><input type="text" id="UpdateRemunerationNotes" name="UpdateRemunerationNotes" />
+                    </td>
+                    <td>
+                        Recruit. Status:<br />
+                        <select id="UpdateStatus" name="UpdateStatus">
+                            @foreach (var item in ViewBag.CandidateStatus)
+                            {
+                                if (item.Activated == 1)
+                                {
+                                    <option name="@item.IdStatus" value="@item.IdStatus">@item.Description</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Interview:<br /><input type="text" id="UpdateInterview" name="UpdateInterview" placeholder="yyyy-mm-dd" required />
+                    </td>
+                    <td>
+                        Source:<br /><select id="UpdateCand" name="UpdateCand" required>
+                            {
+                            @foreach (var item in ViewBag.Candidacies)
+                            {
+                                <option name="@item.IdCandidacy" value="@item.IdCandidacy">@item.Description</option>
+                            }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Assessment:<br /><select id="UpdateEvaluation" name="UpdateEvaluation">
+                            @foreach (var item in ViewBag.Evaluations)
+                            {
+                                <option name="@item.IdEval" value="@item.IdEval">@item.Eval</option>
+                            }
+                        </select>
+                    </td>
+                    <td>Code<br /><input type="text" name="UpdateCandidateCode" id="UpdateCandidateCode" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        Contact<br /> Number<br /><input type="text" id="UpdateContactNumber" name="UpdateContactNumber" pattern="[0-9]{9}"
+                                                         maxlength="9" placeholder="218888888" title="Please enter numbers only" />
+                    </td>
+                    <td>Email<br /><input type="email" id="UpdateEmail" name="UpdateEmail" required /></td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        Description:
+                        <br />
+                        <textarea id="UpdateDesc" name="UpdateDesc" cols="50000"></textarea>
+                    </td>
+                </tr>
+            </table>
+            @*<input type="submit" value="Update" />*@
+        <button onclick="EditCandidate()">Update</button>
+            <input type="hidden" id="id" name="id" />
+        @*</form>*@
+
+    </div>
+    <div id="EditExp" name="EditExp" style="background-color:#D9D9D9; color:black; width:100%; height:341px;">
+        Edit Exp
+        @*<form method="post" runat="server" action="EditExp">*@
+            <table border="1" style="width:100%; height:100%;">
+                <tr>
+                    <td>
+                        <input type="hidden" id="IdRnSERNS" name="IdRnSERNS" />
+                        <input type="hidden" id="IdECRnS" name="IdECRnS" />
+                        <input type="hidden" id="IdCandidateECRnS" name="IdCandidateECRnS" />
+                        Role:<br /><select id="IdRoleERNS" name="IdRoleERNS" required>
+                            @foreach (var item in ViewBag.Roles)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdRole" value="@item.IdRole">@item.NameRole</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Skill:<br /><select id="IdSkillERNS" name="IdSkillERNS" required>
+                            @foreach (var item in ViewBag.Skills)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdSkill" value="@item.IdSkill">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Start Date:<br /><input type="text" id="StartERNS" name="StartERNS" placeholder="yyyy-mm-dd" required />
+                    </td>
+                    <td>
+                        Finish Date:<br /><input type="text" id="FinishERNS" name="FinishERNS" placeholder="yyyy-mm-dd" required />
+                    </td>
+                    <td>
+                        Skill Evaluation:<br /><select id="IdGradeERNS" name="IdGradeERNS" required>
+                            @foreach (var item in ViewBag.Grades)
+                            {
+                                <option id="@item.IdGrade" value="@item.IdGrade">@item.Grade</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        MainExp: <br /><select id="MainEXPRNS" name="MainEXPRNS" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">Description:<br /><textarea id="DescERNS" name="DescERNS" placeholder="Description" required></textarea></td>
+                </tr>
+            </table>
+            @*<input type="submit" value="Update Exp" />*@
+        <button onclick="EditExp()">Update Exp</button>
+        @*</form>*@
+    </div>
+
+    <div id="AddExp" name="AddExp" style="background-color: #4B4B4B; color:white; height:341px; width:100%;">
+        Add Exp
+        @*<input type="hidden" id="CandidateName"/>*@
+        @*<form method="post" runat="server" action="AddExp">*@
+            <table border="1" style="width:100%; height:100%;">
+                <tr>
+                    <td>
+                        <input type="hidden" id="IdCandidateAddExp" name="IdCandidateAddExp" />
+                        Role:<br /><select id="IdRoleAddExp" name="IdRoleAddExp" required>
+                            @foreach (var item in ViewBag.Roles)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdRole" value="@item.IdRole">@item.NameRole</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Skill:<br /><select id="IdSkillAddExp" name="IdSkillAddExp" required>
+                            @foreach (var item in ViewBag.Skills)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdSkill" value="@item.IdSkill">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Start Date:<br /><input type="text" id="StartAddExp" name="StartAddExp" placeholder="yyyy-mm-dd" required />
+                    </td>
+                    <td>
+                        Finish Date:<br /><input type="text" id="FinishAddExp" name="FinishAddExp" placeholder="yyyy-mm-dd" required />
+                    </td>
+                    <td>
+                        Skill Evaluation:<br /><select id="IdGradeAddExp" name="IdGradeAddExp" required>
+                            @foreach (var item in ViewBag.Grades)
+                            {
+                                <option id="@item.IdGrade" value="@item.IdGrade">@item.Grade</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        MainExp: <select id="MainEXPAddExp" name="MainEXPAddExp" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        Description:<br /><textarea id="DescAddExp" name="DescAddExp" placeholder="Description" @*cols="150"*@ required>
+                    </textarea>
+                    </td>
+                </tr>
+            </table>
+            @*<input type="submit" value="Update Exp" />*@
+        <button onclick="AddExp()">Add Exp</button>
+        @*</form>*@
+    </div>
+
+    <div id="AddNote">
+        <input type="hidden" id="IdCandidateNote" name="IdCandidateNote" />
+        Note:<textarea id="AddNoteText" name="AddNoteText"></textarea>
+        <button onclick="CreateCandidateNote()">Add</button>
+    </div>
+    <div id="EditNoteForm">
+        <input type="hidden" id="IdNoteEdit" name="IdNoteEdit"/>
+        <input type="hidden" id="OldNote" name="OldNote"/>
+        Note:<textarea id="EditNote" name="EditNote"></textarea>
+        <button onclick="UpdateCandidateNote()">UpdateCandidateNote</button>
+    </div>
+
+</div>
+<br />
+<div id="CandidateInfo" name="CandidateInfo"></div><br />
+
+<div id="NotesContainer" name="NotesContainer"></div>
+
+<div id="ExpList" name="ExpList">
+</div>
+<br/>
+<div id="Search" style="border: 1px dashed;">
+    <b>Search by:</b>
+    Role:<select id="Role" name="Role">
+        <option id="" name="" value="-">-</option>
+        @foreach (var item in ViewBag.Roles)
+        {
+            if (item.Active == 1)
+            {
+                <option id="@item.IdRole" name="@item.IdRole" value="@item.IdRole">@item.NameRole</option>
+            }
+        }
+    </select>
+    <select id="OpType" name="OpType">
+        <option id="And" name="And" value="And">And</option>
+        <option id="Or" name="Or" value="Or">Or</option>
+    </select>
+    Skill:<select id="Skill" name="Skill">
+        <option id="" name="" value="-">-</option>
+        @foreach (var item in ViewBag.Skills)
+        {
+            if (item.Active == 1)
+            {
+                <option id="@item.IdSkill" name="@item.IdSkill" value="@item.IdSkill">@item.Name</option>
+            }
+        }
+    </select>
+    Nationality:<select id="SearchNationality" name="SearchNationality">
+        <option value="-">-</option>
+        @foreach (var item in ViewBag.Nationalities)
+        {
+            if (item.Active == 1)
+            {
+                <option value="@item.NationalityDescription">@item.NationalityDescription</option>
+            }
+        }
+    </select>
+    Name: <input id="Name" name="Name" />
+    <button id="btnSearch" name="btnSearch" onclick="SearchCandidate()">Search</button>
+    <button id="btnClear" name="btnClear" onclick="SearchCandidateClear()">Clear Filters</button>
+    ListBy:<select id="ListBy" name="ListBy" onchange="SearchCandidate()">
+        <option value="0">Status</option>
+        <option value="1">Exp.</option>
+    </select>
+    <b id="Detailed" name="Detailed">Detailed:</b>
+    <input type="checkbox" id="ListType" name="ListType" onclick="SearchCandidate()" />
+</div>
+
+<div id="List">
+</div>
+
+<script>
+    $(document).ready(function () {
+        ShowHideEditFormsCandidates(100);
+        GetCandidateNotes();
+        SearchCandidate();
+    }
+    );
+</script>

@@ -1,0 +1,79 @@
+﻿@model Adonis.Models.Skills
+@{
+    ViewBag.Title = "Skills";
+}
+
+<h2>Skills</h2>
+
+<div id="container">
+    <div id="List">
+        <table border="1">
+            <tr>
+                <th>Action</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Status</th>
+            </tr>
+            @{
+                foreach (var item in ViewBag.Skills)
+                {
+                    <tr>
+                        <td><button onclick="FillEditFormSkill(@item.IdSkill ,'@item.Name', @item.IdCategory, @item.Active)">Edit</button></td>
+                        <td>@item.Name</td>
+                        <td>@item.NameCategory</td>
+                        <td>
+                            @{
+                                if (@item.Active == 0)
+                                {
+                                    <p>No</p>
+                                }
+                                else
+                                {<p>Yes</p>}
+                            }
+                        </td>
+                    </tr>
+                }
+             }
+        </table>
+    </div>
+    <div id="Forms">
+        <label>CREATE SKILL</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateSkillAction">
+                Name:<input type="text" id="newSkill" name="newSkill" />
+                Category:<select id="CategoryCreate" name="Category">
+                    @{
+                        foreach (var item in ViewBag.SkillCategories)
+                        {
+                            <option value="@item.IdCategory">@item.NameCategory</option>
+                        }
+                    }
+                </select>
+                <input type="submit" value="Create"/>
+            </form>
+        </div>
+        <br />
+        <label>EDIT SKILL</label>
+        <div id="FormEdit">
+            <form method="post" action="EditSkillAction">
+                Name:<input type="text" id="oldSkill" name="oldSkill" />
+                Category:<select id="CategoryEdit" name="CategoryEdit">
+                    @{
+                        foreach (var item in ViewBag.SkillCategories)
+                        {
+                            <option value="@item.IdCategory">@item.NameCategory</option>
+                        }
+                    }
+                </select>
+                <br />
+                Status:
+                <select id="Activated" name="Activated">
+                    <option value="1">Activated</option>
+                    <option value="0">DeActivated</option>
+                </select>
+                <input type="submit" value="Update" />
+                <input type="hidden" id="OldId" name="OldId" />
+            </form>
+        </div>
+    </div>
+</div>

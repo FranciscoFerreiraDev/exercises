@@ -1,0 +1,48 @@
+﻿@model Adonis.Models.CandidateStatus
+
+@{
+    ViewBag.Title = "CandidateStatus";
+}
+
+<h2>Candidate Status</h2>
+
+<div id="container">
+    <div id="List">
+        
+    </div>
+    <div id="Forms">
+
+        <label>CREATE STATUS</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateCandidateStatusAction">
+                Description:<input type="text" id="description" name="description" /><br />
+                Color (in: RED-GREEN-BLUE):<br />
+                R<input tipe="text" id="R" name="R" /><br />
+                G<input tipe="text" id="G" name="G"/><br />
+                B<input tipe="text" id="B" name="B"/><br />
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+        <label>EDIT STATUS</label>
+        <div id="FormEdit">
+            <form method="post" action="EditCandidateStatusAction">
+                <input type="hidden" id="IdStatus" name="IdStatus" />
+                Description:<input type="text" id="eDescription" name="eDescription" /><br />
+                Color (in: RED-GREEN-BLUE):<br />
+                R<input tipe="text" id="eR" name="eR" /><br />
+                G<input tipe="text" id="eG" name="eG" /><br />
+                B<input tipe="text" id="eB" name="eB" /><br />
+                Active:<select id="Active" name="Active">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                <input type="submit" value="Edit" />
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        showCandidateStatusList();
+    });
+</script>

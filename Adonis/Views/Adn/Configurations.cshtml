@@ -1,0 +1,22 @@
+﻿@model Adonis.Models.AppGeneral
+
+@{
+    ViewBag.Title = "Configurations";
+}
+
+<h2>Configurations</h2>
+
+<div>
+    <div>
+        <label>Current path:</label><label id="LogPath"></label><br />
+    </div><br />
+    <div>
+        <label>Upload data</label><input type="text" id="FilePath" name="FilePath"/><button onclick="UploadFile()">teste excel upload</button>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        GetLogPath();
+        }
+     );
+</script>

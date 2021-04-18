@@ -1,0 +1,56 @@
+﻿@model Adonis.Models.Nationalities
+
+@{
+    ViewBag.Title = "Nationalities";
+}
+
+<h2>Nationalities</h2>
+
+<div id="container" name="conainer">
+    <div id="Forms" name="Forms">
+        <label>CREATE NATIONALITY</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateNationalityAction" id="createNation" name="createNation">
+                Name:<input type="text" id="newNationality" name="newNationality" />
+                Candidates?:<select id="NewforCandidates" name="NewforCandidates">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                Leads?:<select id="NewforLeads" name="NewforLeads">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+        <br />
+
+        <label>EDIT NATIONALITY</label>
+        <div id="FormEdit">
+            <form method="post" action="EditNationalityAction" id="createNation" name="createNation">
+                <input type="hidden" id="oldId" name="oldId" />
+                Name:<input type="text" id="oldNationality" name="oldNationality" />
+                Candidates?:<select id="oldforCandidates" name="oldforCandidates">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                Leads?:<select id="oldforLeads" name="oldforLeads">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select><br />
+                Active:<select id="oldActive" name="oldActive">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                <input type="submit" value="Update" />
+            </form>
+        </div>
+    </div>
+    <div id="List" name="List"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        showNationalites();
+    }
+    );
+</script>

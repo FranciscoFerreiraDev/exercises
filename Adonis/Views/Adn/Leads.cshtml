@@ -1,0 +1,287 @@
+﻿@model Adonis.Models.Leads
+
+@{
+    ViewBag.Title = "Leads";
+}
+
+<h2>Leads</h2>
+<br />
+<div>
+    <button onclick="showhideForms(1)"><i class="fas fa-user-plus"> </i> Create Lead</button>
+    <button onclick="showhideForms(-1)"><i class="fa fa-close"></i></button>
+</div>
+<input type="text" id="IdLeadSafe" name="IdLeadSafe" hidden/>
+<input type="text" id="OldNote" name="OldNote" hidden/>
+<div id="Forms" name="Forms">
+    <div id="FormCreate">
+        <form method="post" action="CreateLeadAction">
+            <label>CREATE LEAD</label>
+            <table border="1">
+                <tr>
+                    <td>
+                        Customer:<br />
+                        <select id="createLeadCustomer" name="createLeadCustomer" required>
+                            @foreach (var item in ViewBag.Customers)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdCustomer" value="@item.IdCustomer">@item.ClientName</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Code:<br />
+                        <input type="text" id="createLeadCode" name="createLeadCode" required />
+                    </td>
+                    <td>
+                        Role:<br />
+                        <select id="createLeadRole" name="createLeadRole">
+                            @foreach (var item in ViewBag.Roles)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdRole" value="@item.IdRole">@item.NameRole</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Role Exp.:<br />
+                        <input type="text" id="createLeadRoleExp" name="createLeadRoleExp" />
+                    </td>
+                    <td>
+                        MainSkill:<br />
+                        <select id="createLeadSkill" name="createLeadSkill">
+                            @foreach (var item in ViewBag.Skills)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdSkill" value="@item.IdSkill">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        SkillExp(years):<br />
+                        <input type="text" id="reateLeadSkillEXP" name="createLeadSkillEXP" />
+                    </td>
+                    @*</tr>
+                        <tr>*@
+                    <td>
+                        Min. Years of Prof. Exp:<br />
+                        <input type="text" id="createLeadMinXP" name="createLeadMinXP" />
+                    </td>
+                    <td>
+                        Max. Years of Prof. Exp:<br />
+                        <input type="text" id="createLeadMaxXP" name="createLeadMaxXP" />
+                    </td>
+                    <td>
+                        Min. Age:<br />
+                        <input type="text" id="createLeadMinAge" name="createLeadMinAge" />
+                    </td>
+                    <td>
+                        Max. Age:<br />
+                        <input type="text" id="createLeadMaxAge" name="createLeadMaxAge" />
+                    </td>
+                    <td>
+                        Nationality:<br />
+                        <select id="createLeadNationality" name="createLeadNationality" required>
+                            @foreach (var item in ViewBag.Nationalities)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdNationality" value="@item.IdNationality">@item.NationalityDescription</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Salary (min):<br />
+                        <input type="text" id="createLeadMinSal" name="createLeadMinSal" />
+                    </td>
+                    <td>
+                        Salary (max):<br />
+                        <input type="text" id="createLeadMaxSal" name="createLeadMaxSal" />
+                    </td>
+                    <td>
+                        Availability:<br />
+                        <select Id"createLeadAvailability" name="createLeadAvailability" required>
+                            @{ foreach (var item in ViewBag.Availability)
+                                {
+                                    if (item.Activated == 1)
+                                    {
+                                        <option name="@item.IdAvailability" value="@item.IdAvailability">@item.Description</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            Description:<br />
+            <textarea id="createDescription" name="createDescription" required></textarea>
+        @*<button onclick="CreateLead()">Create</button>*@
+            <input type="submit" value="Create" />
+        </form>
+    </div>
+    <div id="FormEdit">
+        >
+        <label>EDIT LEAD</label>
+        <form method="post" action="EditLeadAction">
+            <label>EDIT LEAD</label>
+            <table border="1">
+                <tr>
+                    <td>
+                        Customer:<br />
+                        <select id="editLeadCustomer" name="editLeadCustomer" required>
+                            @foreach (var item in ViewBag.Customers)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdCustomer" value="@item.IdCustomer">@item.ClientName</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Code:<br />
+                        <input type="text" id="editLeadCode" name="editLeadCode" required />
+                    </td>
+                    <td>
+                        Role:<br />
+                        <select id="editLeadRole" name="editLeadRole" required>
+                            @foreach (var item in ViewBag.Roles)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdRole" value="@item.IdRole">@item.NameRole</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Role Exp.(years):<br />
+                        <input type="text" id="editLeadRoleExp" name="editLeadRoleExp" />
+                    </td>
+                    <td>
+                        MainSkill:<br />
+                        <select id="editLeadSkill" name="editLeadSkill" required>
+                            @foreach (var item in ViewBag.Skills)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdSkill" value="@item.IdSkill">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Skill Exp.(years):<br />
+                        <input type="text" id="editLeadSkillEXP" name="editLeadSkillEXP" />
+                    </td>
+                    <td>
+                        Min. Years of Prof. Exp:<br />
+                        <input type="text" id="editLeadMinXP" name="editLeadMinXP" />
+                    </td>
+                    <td>
+                        Max. Years of Prof. Exp:<br />
+                        <input type="text" id="editLeadMaxXP" name="editLeadMaxXP" />
+                    </td>
+                    <td>
+                        Min. Age:<br />
+                        <input type="text" id="editLeadMinAge" name="editLeadMinAge" />
+                    </td>
+                    <td>
+                        Max. Age:<br />
+                        <input type="text" id="editLeadMaxAge" name="editLeadMaxAge" />
+                    </td>
+                    <td>
+                        Nationality:<br />
+                        <select id="editLeadNationality" name="editLeadNationality" required>
+                            @foreach (var item in ViewBag.Nationalities)
+                            {
+                                if (item.Active == 1)
+                                {
+                                    <option name="@item.IdNationality" value="@item.IdNationality">@item.NationalityDescription</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Salary (min):<br />
+                        <input type="text" id="editLeadMinSal" name="editLeadMinSal" />
+                    </td>
+                    <td>
+                        Salary (max):<br />
+                        <input type="text" id="editLeadMaxSal" name="editLeadMaxSal" />
+                    </td>
+                    <td>
+                        Availability:<br />
+                        <select id="editLeadAvailability" name="editLeadAvailability" required>
+                            @{ foreach (var item in ViewBag.Availability)
+                                {
+                                    if (item.Activated == 1)
+                                    {
+                                        <option id="@item.IdAvailability" name="@item.IdAvailability" value="@item.IdAvailability">@item.Description</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        Lead Status:<br />
+                        <select id="editLeadStatus" name="editLeadStatus" required>
+                            @{ foreach (var item in ViewBag.LeadStatus)
+                                {
+                                    <option id="@item.IdLeadStatus" value="@item.IdLeadStatus">@item.Description</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            Description:<br />
+            <textarea id="editDescription" name="editDescription" required></textarea>
+            <input type="hidden" id="IdLead" name="IdLead" />
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+
+    <div id="AddLeadNote">
+        Note:<textarea id="AddNoteText" name="AddNoteText"></textarea>
+        <button onclick="CreateLeadNote()">Add Note</button>
+    </div>
+    <div id="EditLeadNoteForm">
+        <input type="hidden" id="IdLeadNote" name="IdLeadNote" />
+        Note:<textarea id="EditNote" name="EditNote"></textarea>
+        <button onclick="EditLeadNote()">Update Note</button>
+    </div>
+
+</div>
+<div id="Info" name="Info">
+    
+</div>
+<div id="NotesContainer" name="NotesContainer"></div><br />
+<div id="CandidateResults"></div>
+<button onclick="getCandidatesInfoForMail()">mail test</button>
+<br />
+<div id="search" name="search">
+
+</div>
+<div id="List" name="List">
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        ShowHideEditFormsCandidates(100);
+        showLeads();
+        GetLeadNotes();
+    }
+    );
+</script>

@@ -1,0 +1,58 @@
+﻿@model Adonis.Models.Role
+    
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h2>Roles</h2>
+
+<div id="container">
+    <div id="List">
+        <table border="1">
+            <tr>
+                <th>Action</th>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+            @{
+                foreach (var item in ViewBag.Roles)
+                {
+                    <tr>
+                        <td><button onclick="FillEditFormRoleCandidacyAvailabilityLocation(@item.IdRole,'@item.NameRole',@item.Active)">Edit</button></td>
+                        <td>@item.NameRole</td>
+                        @if (@item.Active == 1)
+                        {<td>Yes</td>}
+                        else {<td>No</td>}
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div id="Forms">
+
+        <label>CREATE ROLE</label>
+        <div id="FormCreate">
+            <form method="post" action="CreateRoleAction">
+                Name:<input type="text" id="newRole" name="newRole" />
+                <input type="submit" value="Create" />
+            </form>
+        </div>
+
+        <br />
+
+        <label>EDIT ROLE</label>
+        <div id="FormEdit">
+            <form method="post" action="EditRoleAction">
+                Name:<input type="text" id="newName" name="newName" />
+                Status:
+                <select id="Activated" name="Activated">
+                    <option value="1">Activated</option>
+                    <option value="0">DeActivated</option>
+                </select>
+                <br />
+                <input type="submit" value="Update" />
+                <input type="hidden" id="OldId" name="OldId" />
+            </form>
+        </div>
+    </div>
+ </div>
