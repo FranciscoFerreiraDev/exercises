@@ -11,7 +11,6 @@ namespace Adonis.Models
 {
     public class ContextModel
     {
-        //public SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["AdonDB"].ConnectionString);
         private SqlCommand command = new SqlCommand();
         private SqlDataReader reader;
         public SqlConnection connection;
@@ -20,8 +19,6 @@ namespace Adonis.Models
         public ContextModel()
         {
             CreateConnection();
-            //ChangeState(true);
-            //CreateCommand();
         }
 
         //It creates the connection
